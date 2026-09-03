@@ -1,26 +1,115 @@
 @import "tailwindcss";
 
+/* ── CPP Design Tokens ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Brand */
+  --navy-900: #0D2A4D;
+  --navy-700: #1A4070;
+  --navy-500: #2E6BAD;
+  --navy-200: #B8D0E8;
+  --navy-100: #D6E5F3;
+  --navy-50:  #EBF2FA;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Neutros quentes */
+  --gray-900: #111827;
+  --gray-700: #374151;
+  --gray-500: #6B7280;
+  --gray-300: #D1D5DB;
+  --gray-100: #F3F4F6;
+  --gray-50:  #F9FAFB;
+
+  /* Semânticas */
+  --green-600: #166534;
+  --green-100: #DCFCE7;
+  --amber-600: #92400E;
+  --amber-100: #FEF3C7;
+  --red-600:   #991B1B;
+  --red-100:   #FEE2E2;
+
+  /* Superfícies */
+  --background: var(--gray-50);
+  --surface:    #FFFFFF;
+  --border:     var(--gray-300);
+  --border-soft: #E5E7EB;
+
+  /* Texto */
+  --text-primary:   var(--navy-900);
+  --text-secondary: var(--gray-500);
+  --text-muted:     #9CA3AF;
+
+  /* Acento */
+  --accent:    var(--navy-900);
+  --accent-hover: var(--navy-700);
+  --accent-bg: var(--navy-50);
+
+  /* Sidebar */
+  --sidebar-bg:     var(--navy-900);
+  --sidebar-text:   rgba(255,255,255,0.75);
+  --sidebar-active: rgba(255,255,255,0.12);
+  --sidebar-border: rgba(255,255,255,0.08);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0C1520;
+    --surface:    #111D2B;
+    --border:     #1E3048;
+    --border-soft: #172438;
+
+    --text-primary:   #E8EFF8;
+    --text-secondary: #7AAAC8;
+    --text-muted:     #4A6A88;
+
+    --accent:       #5B8FD4;
+    --accent-hover: #7AAAE0;
+    --accent-bg:    #111D2B;
+
+    --gray-100: #111D2B;
+    --gray-50:  #0C1520;
+    --gray-300: #1E3048;
+    --gray-500: #7AAAC8;
+
+    --green-600: #4ADE80;
+    --green-100: #052E16;
+    --amber-600: #FCD34D;
+    --amber-100: #1C1007;
+    --red-600:   #F87171;
+    --red-100:   #1C0707;
+
+    --sidebar-bg:     #091422;
+    --sidebar-text:   rgba(255,255,255,0.65);
+    --sidebar-active: rgba(255,255,255,0.08);
+    --sidebar-border: rgba(255,255,255,0.06);
   }
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  line-height: 1.6;
 }
+
+/* ── Tipografia utilitária ── */
+.font-display {
+  font-family: 'Cinzel', Georgia, 'Times New Roman', serif;
+}
+
+h1, h2, h3, h4 {
+  text-wrap: balance;
+  line-height: 1.2;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
