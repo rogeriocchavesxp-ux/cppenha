@@ -43,11 +43,11 @@ function LoginForm() {
 
     const { data: perfil } = await supabase
       .from('perfis')
-      .select('papel')
+      .select('role')
       .eq('id', data.session.user.id)
       .single()
 
-    const papel = perfil?.papel as Papel | undefined
+    const papel = (perfil as any)?.role as Papel | undefined
     const destino = redirect || (papel ? PAPEL_HOME[papel] : '/login')
 
     router.push(destino)

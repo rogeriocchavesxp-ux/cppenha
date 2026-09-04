@@ -41,5 +41,7 @@ export async function getPerfil() {
     .eq('id', session.user.id)
     .single()
 
-  return data
+  if (!data) return null
+  // banco usa 'role', código usa 'papel' — normaliza aqui para não mudar todos os arquivos
+  return { ...data, papel: (data as any).role ?? (data as any).papel }
 }

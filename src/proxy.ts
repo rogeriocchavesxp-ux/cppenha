@@ -34,11 +34,11 @@ export async function proxy(request: NextRequest) {
     if (session && path === '/login') {
       const { data: perfil } = await supabase
         .from('perfis')
-        .select('papel')
+        .select('role')
         .eq('id', session.user.id)
         .single()
 
-      const papel = perfil?.papel as Papel | undefined
+      const papel = perfil?.role as Papel | undefined
       const home = papel ? PAPEL_HOME[papel] : '/login'
       return NextResponse.redirect(new URL(home, request.url))
     }
@@ -55,7 +55,7 @@ export async function proxy(request: NextRequest) {
   // Busca o papel do usuário
   const { data: perfil } = await supabase
     .from('perfis')
-    .select('papel, ativo')
+    .select('role, ativo')
     .eq('id', session.user.id)
     .single()
 
@@ -64,7 +64,7 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL('/login?erro=acesso_negado', request.url))
   }
 
-  const papel = perfil.papel as Papel
+  const papel = perfil.role as Papel
 
   // Verifica permissão para o portal solicitado
   for (const [prefix, roles] of Object.entries(PORTAL_ROLES)) {
