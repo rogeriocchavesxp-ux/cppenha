@@ -29,7 +29,12 @@ export async function atualizarStatusMatricula(id: string, status: StatusMatricu
   revalidatePath('/secretaria/matriculas')
 }
 
-export async function listarMatriculas(anoLetivoId?: string) {
+export async function listarMatriculas(filtros?: {
+  anoLetivoId?: string
+  status?: string
+  turmaId?: string
+  busca?: string
+}) {
   const supabase = await createSupabaseServer()
   let query = supabase
     .from('matriculas')
@@ -41,18 +46,31 @@ export async function listarMatriculas(anoLetivoId?: string) {
     `)
     .order('criado_em', { ascending: false })
 
-  if (anoLetivoId) query = query.eq('ano_letivo_id', anoLetivoId)
+  if (filtros?.anoLetivoId) query = query.eq('ano_letivo_id', filtros.anoLetivoId)
+  if (filtros?.status)      query = query.eq('status', filtros.status)
+  if (filtros?.turmaId)     query = query.eq('turma_id', filtros.turmaId)
 
   const { data, error } = await query
   if (error) throw new Error(error.message)
-  return data ?? []
+
+  let result = data ?? []
+
+  if (filtros?.busca) {
+    const busca = filtros.busca.toLowerCase()
+    result = result.filter((m: any) =>
+      m.alunos?.nome_completo?.toLowerCase().includes(busca) ||
+      m.alunos?.matricula?.toLowerCase().includes(busca)
+    )
+  }
+
+  return result
 }
 
 export async function listarMatriculasPorAluno(alunoId: string) {
   const supabase = await createSupabaseServer()
   const { data, error } = await supabase
     .from('matriculas')
-    .select('*, turmas(nome, serie), anos_letivos(ano)')
+    .select('*, turmas(nome, serie, turno), anos_letivos(ano)')
     .eq('aluno_id', alunoId)
     .order('criado_em', { ascending: false })
 

@@ -1,6 +1,9 @@
 'use server'
 
 import { createSupabaseServer, getSession } from '@/lib/supabase-server'
+import { revalidatePath } from 'next/cache'
+
+// ── Portal dos pais ──────────────────────────────────────────────────────────
 
 export async function listarMeusFilhos() {
   const sb = await createSupabaseServer()
@@ -32,7 +35,6 @@ export async function boletimDoAluno(alunoId: string) {
   const session = await getSession()
   if (!session?.user?.id) throw new Error('Não autenticado')
 
-  // verifica que este pai tem acesso a este aluno
   const { data: resp } = await sb
     .from('responsaveis')
     .select('id')
@@ -41,7 +43,6 @@ export async function boletimDoAluno(alunoId: string) {
     .single()
   if (!resp) throw new Error('Acesso negado')
 
-  // matricula ativa do aluno
   const { data: matricula } = await sb
     .from('matriculas')
     .select('id, turmas ( nome, serie ), anos_letivos ( ano, ativo )')
@@ -121,4 +122,60 @@ export async function mensalidadesDoAluno(alunoId: string) {
 
   if (error) throw new Error(error.message)
   return data ?? []
+}
+
+// ── Secretaria: CRUD de responsáveis ────────────────────────────────────────
+
+export async function listarResponsaveisPorAluno(alunoId: string) {
+  const sb = await createSupabaseServer()
+  const { data, error } = await sb
+    .from('responsaveis')
+    .select('id, nome, telefone, email, parentesco, financeiro, perfil_id, criado_em')
+    .eq('aluno_id', alunoId)
+    .order('financeiro', { ascending: false })
+    .order('criado_em')
+
+  if (error) throw new Error(error.message)
+  return data ?? []
+}
+
+export async function criarResponsavel(payload: {
+  aluno_id: string
+  nome: string
+  parentesco: string
+  telefone?: string
+  email?: string
+  financeiro: boolean
+}) {
+  const sb = await createSupabaseServer()
+  const { error } = await sb.from('responsaveis').insert({
+    aluno_id:   payload.aluno_id,
+    nome:       payload.nome,
+    parentesco: payload.parentesco,
+    telefone:   payload.telefone || null,
+    email:      payload.email    || null,
+    financeiro: payload.financeiro,
+  })
+  if (error) throw new Error(error.message)
+  revalidatePath('/secretaria/alunos')
+}
+
+export async function atualizarResponsavel(id: string, payload: {
+  nome?: string
+  parentesco?: string
+  telefone?: string
+  email?: string
+  financeiro?: boolean
+}) {
+  const sb = await createSupabaseServer()
+  const { error } = await sb.from('responsaveis').update(payload).eq('id', id)
+  if (error) throw new Error(error.message)
+  revalidatePath('/secretaria/alunos')
+}
+
+export async function removerResponsavel(id: string) {
+  const sb = await createSupabaseServer()
+  const { error } = await sb.from('responsaveis').delete().eq('id', id)
+  if (error) throw new Error(error.message)
+  revalidatePath('/secretaria/alunos')
 }

@@ -2,8 +2,7 @@ import { redirect } from 'next/navigation'
 import { getPerfil } from '@/lib/supabase-server'
 import { AppShell } from '@/components/layout/AppShell'
 import { Card } from '@/components/ui/Card'
-import { MatriculaForm } from '@/components/secretaria/MatriculaForm'
-import { listarAlunos } from '@/actions/alunos'
+import { MatriculaWizard } from '@/components/secretaria/MatriculaWizard'
 import { listarTurmas, listarAnosLetivos } from '@/actions/turmas'
 
 type Props = { searchParams: Promise<{ aluno_id?: string }> }
@@ -13,11 +12,7 @@ export default async function NovaMatriculaPage({ searchParams }: Props) {
   if (!perfil) redirect('/login')
 
   const { aluno_id } = await searchParams
-  const [alunos, turmas, anos] = await Promise.all([
-    listarAlunos(),
-    listarTurmas(),
-    listarAnosLetivos(),
-  ])
+  const [turmas, anos] = await Promise.all([listarTurmas(), listarAnosLetivos()])
 
   return (
     <AppShell
@@ -30,9 +25,9 @@ export default async function NovaMatriculaPage({ searchParams }: Props) {
         { label: 'Nova' },
       ]}
     >
-      <div className="max-w-lg">
+      <div className="max-w-2xl">
         <Card>
-          <MatriculaForm alunos={alunos} turmas={turmas} anos={anos} alunoIdInicial={aluno_id} />
+          <MatriculaWizard turmas={turmas} anos={anos} alunoIdInicial={aluno_id} />
         </Card>
       </div>
     </AppShell>
