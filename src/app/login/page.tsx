@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { createBrowserClient } from '@supabase/ssr'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import type { Papel } from '@/types'
@@ -26,6 +26,11 @@ function LoginForm() {
   const [loading, setLoading] = useState(false)
   const [erroForm, setErroForm] = useState<string | null>(
     erro === 'acesso_negado' ? 'Acesso negado ou conta inativa.' : null
+  )
+
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   )
 
   async function handleSubmit(e: React.FormEvent) {
