@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { listarComunicados } from '@/actions/comunicados'
 import { NovoComunicadoForm } from '@/components/comunicados/NovoComunicadoForm'
+import { EnviarEmailBtn } from '@/components/comunicados/EnviarEmailBtn'
 
 const DESTINO_LABEL: Record<string, string> = {
   todos: 'Todos', turma: 'Turma', aluno: 'Aluno', colaboradores: 'Colaboradores',
@@ -46,11 +47,14 @@ export default async function ComunicadosPage() {
                   <p className="text-sm leading-relaxed mb-3" style={{ color: 'var(--text-secondary)' }}>
                     {c.conteudo}
                   </p>
-                  <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                    {c.perfis?.nome} · {new Date(c.publicado_em).toLocaleDateString('pt-BR', {
-                      day: '2-digit', month: 'long', year: 'numeric',
-                    })}
-                  </p>
+                  <div className="flex items-center justify-between gap-3 mt-2">
+                    <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                      {c.perfis?.nome} · {new Date(c.publicado_em).toLocaleDateString('pt-BR', {
+                        day: '2-digit', month: 'long', year: 'numeric',
+                      })}
+                    </p>
+                    {isStaff && <EnviarEmailBtn comunicadoId={c.id} />}
+                  </div>
                 </Card>
               ))}
             </div>

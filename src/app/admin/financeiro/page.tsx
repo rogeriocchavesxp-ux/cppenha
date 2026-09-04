@@ -7,6 +7,7 @@ import { listarMensalidades, resumoFinanceiro, atualizarAtrasadas } from '@/acti
 import { listarAnosLetivos } from '@/actions/turmas'
 import { GerarMensalidadesForm } from '@/components/financeiro/GerarMensalidadesForm'
 import { RegistrarPagamentoBtn } from '@/components/financeiro/RegistrarPagamentoBtn'
+import { AvisoInadimplenciaBtn } from '@/components/financeiro/AvisoInadimplenciaBtn'
 
 type Props = { searchParams: Promise<{ status?: string; anoLetivoId?: string; acao?: string }> }
 
@@ -158,9 +159,14 @@ export default async function FinanceiroAdminPage({ searchParams }: Props) {
                           </Badge>
                         </td>
                         <td className="px-4 py-2.5">
-                          {m.status !== 'pago' && m.status !== 'isento' && (
-                            <RegistrarPagamentoBtn mensalidadeId={m.id} valor={m.valor} />
-                          )}
+                          <div className="flex flex-col gap-1.5">
+                            {m.status !== 'pago' && m.status !== 'isento' && (
+                              <RegistrarPagamentoBtn mensalidadeId={m.id} valor={m.valor} />
+                            )}
+                            {['pendente', 'atrasado'].includes(m.status) && (
+                              <AvisoInadimplenciaBtn mensalidadeId={m.id} />
+                            )}
+                          </div>
                         </td>
                       </tr>
                     ))}
