@@ -53,22 +53,35 @@ export function Sidebar({ papel, nomeUsuario }: Props) {
         style={{ borderBottom: '1px solid var(--sidebar-border)' }}
       >
         <div
-          className="shrink-0 flex items-center justify-center rounded-lg overflow-hidden"
-          style={{ background: '#fff', width: 40, height: 40, padding: 3 }}
+          className="shrink-0 flex items-center justify-center rounded-xl overflow-hidden"
+          style={{ background: '#fff', width: 46, height: 46, padding: 5, boxShadow: '0 2px 8px rgba(0,0,0,0.25)' }}
         >
           <Image
             src="/logo-escudo.jpeg"
             alt="CPP"
-            width={34}
-            height={34}
+            width={36}
+            height={36}
             style={{ objectFit: 'contain', display: 'block' }}
           />
         </div>
         <div>
-          <p className="font-display text-white text-xs font-semibold leading-tight tracking-wide">
+          <p
+            className="font-display text-white font-semibold leading-tight"
+            style={{ fontSize: '11px', letterSpacing: '0.06em' }}
+          >
             Colégio Presbiteriano
           </p>
-          <p style={{ color: 'var(--gold-500)', fontSize: '10px', letterSpacing: '.12em', textTransform: 'uppercase', fontFamily: 'var(--font-display)' }}>
+          <p
+            style={{
+              color: 'var(--gold-500)',
+              fontSize: '10px',
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              fontFamily: 'var(--font-display)',
+              fontWeight: '600',
+              marginTop: '2px',
+            }}
+          >
             da Penha
           </p>
         </div>
@@ -82,10 +95,13 @@ export function Sidebar({ papel, nomeUsuario }: Props) {
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              className="flex items-center py-2 rounded-md text-sm font-medium transition-colors"
               style={{
                 color: active ? '#FFFFFF' : 'var(--sidebar-text)',
-                background: active ? 'var(--sidebar-active)' : 'transparent',
+                background: active ? 'rgba(201,168,74,0.10)' : 'transparent',
+                borderLeft: active ? '2px solid var(--gold-500)' : '2px solid transparent',
+                paddingLeft: '10px',
+                paddingRight: '12px',
               }}
             >
               {item.label}
@@ -99,10 +115,20 @@ export function Sidebar({ papel, nomeUsuario }: Props) {
         className="px-4 py-4"
         style={{ borderTop: '1px solid var(--sidebar-border)' }}
       >
-        <p className="text-white text-sm font-medium truncate">{nomeUsuario}</p>
         <p
-          className="text-xs capitalize mt-0.5"
-          style={{ color: 'var(--sidebar-text)' }}
+          className="text-white font-medium truncate"
+          style={{ fontSize: '13px', letterSpacing: '0.01em' }}
+        >
+          {nomeUsuario}
+        </p>
+        <p
+          className="mt-1 uppercase tracking-widest"
+          style={{
+            color: 'var(--gold-300)',
+            fontSize: '9px',
+            letterSpacing: '0.14em',
+            fontFamily: 'var(--font-display)',
+          }}
         >
           {papel}
         </p>

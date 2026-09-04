@@ -97,7 +97,7 @@ function LoginForm() {
         </p>
       )}
 
-      <Button type="submit" loading={loading} className="w-full mt-1">
+      <Button type="submit" size="lg" loading={loading} className="w-full mt-2">
         Entrar
       </Button>
     </form>
@@ -113,13 +113,14 @@ export default function LoginPage() {
         style={{ background: 'var(--navy-900)' }}
       >
         <div className="flex flex-col items-start gap-8">
-          {/* Logo completo em card branco */}
+          {/* Logo completo em card institucional */}
           <div
             className="rounded-xl overflow-hidden"
             style={{
               background: '#fff',
-              padding: '20px 24px',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.30)',
+              padding: '28px 32px',
+              boxShadow: '0 16px 56px rgba(0,0,0,0.40), 0 4px 12px rgba(0,0,0,0.20)',
+              borderBottom: '3px solid var(--gold-500)',
             }}
           >
             <Image
@@ -131,13 +132,39 @@ export default function LoginPage() {
               priority
             />
           </div>
+
+          {/* Separador dourado */}
+          <div
+            style={{
+              width: '36px',
+              height: '1px',
+              background: 'var(--gold-500)',
+              opacity: 0.55,
+            }}
+          />
         </div>
+
+        {/* Versículo bíblico */}
         <p
-          className="text-sm leading-relaxed italic"
-          style={{ color: 'rgba(255,255,255,0.40)', fontFamily: 'var(--font-sans)' }}
+          className="italic leading-relaxed"
+          style={{
+            color: 'rgba(255,255,255,0.68)',
+            fontFamily: 'var(--font-sans)',
+            fontSize: '14px',
+            lineHeight: '1.85',
+          }}
         >
-          "O temor do Senhor é o princípio da sabedoria."<br />
-          <span className="not-italic text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
+          "O temor do Senhor é o princípio da sabedoria."
+          <br />
+          <span
+            className="not-italic"
+            style={{
+              color: 'var(--gold-300)',
+              fontSize: '12px',
+              letterSpacing: '0.06em',
+              fontFamily: 'var(--font-display)',
+            }}
+          >
             Provérbios 9.10
           </span>
         </p>
@@ -164,10 +191,13 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <h2 className="text-xl font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
+          <h2
+            className="font-display font-semibold mb-1"
+            style={{ color: 'var(--navy-900)', fontSize: '22px', letterSpacing: '0.03em' }}
+          >
             Entrar
           </h2>
-          <p className="text-sm mb-7" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-sm mb-7" style={{ color: 'var(--text-secondary)', lineHeight: '1.65' }}>
             Use o e-mail e senha cadastrados pela secretaria.
           </p>
 
