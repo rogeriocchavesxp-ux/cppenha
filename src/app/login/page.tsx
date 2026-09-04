@@ -41,15 +41,22 @@ function LoginForm() {
       return
     }
 
-    const { data: perfil } = await supabase
+    const { data: perfil, error: perfilError } = await supabase
       .from('perfis')
       .select('role')
       .eq('id', data.session.user.id)
       .single()
 
     const papel = (perfil as any)?.role as Papel | undefined
-    const destino = redirect || (papel ? PAPEL_HOME[papel] : '/login')
 
+    if (!papel) {
+      await supabase.auth.signOut()
+      setErroForm('Usuário sem perfil de acesso. Contacte a secretaria.')
+      setLoading(false)
+      return
+    }
+
+    const destino = redirect || PAPEL_HOME[papel]
     router.push(destino)
     router.refresh()
   }
