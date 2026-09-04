@@ -38,9 +38,12 @@ export async function proxy(request: NextRequest) {
         .eq('id', session.user.id)
         .single()
 
-      const papel = perfil?.role as Papel | undefined
-      const home = papel ? PAPEL_HOME[papel] : '/login'
-      return NextResponse.redirect(new URL(home, request.url))
+      const papel = (perfil as any)?.role as Papel | undefined
+      if (papel && PAPEL_HOME[papel]) {
+        return NextResponse.redirect(new URL(PAPEL_HOME[papel], request.url))
+      }
+      // sem perfil → deixa renderizar o login normalmente
+      return response
     }
     return response
   }
