@@ -52,14 +52,18 @@ export function Sidebar({ papel, nomeUsuario }: Props) {
         className="flex items-center gap-3 px-4 py-4"
         style={{ borderBottom: '1px solid var(--sidebar-border)' }}
       >
-        <Image
-          src="/logo-escudo.jpeg"
-          alt="CPP"
-          width={40}
-          height={48}
-          className="shrink-0"
-          style={{ mixBlendMode: 'screen', objectFit: 'contain' }}
-        />
+        <div
+          className="shrink-0 flex items-center justify-center rounded-lg overflow-hidden"
+          style={{ background: '#fff', width: 40, height: 40, padding: 3 }}
+        >
+          <Image
+            src="/logo-escudo.jpeg"
+            alt="CPP"
+            width={34}
+            height={34}
+            style={{ objectFit: 'contain', display: 'block' }}
+          />
+        </div>
         <div>
           <p className="font-display text-white text-xs font-semibold leading-tight tracking-wide">
             Colégio Presbiteriano

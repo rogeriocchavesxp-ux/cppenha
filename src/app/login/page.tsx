@@ -113,27 +113,23 @@ export default function LoginPage() {
         style={{ background: 'var(--navy-900)' }}
       >
         <div className="flex flex-col items-start gap-8">
-          <Image
-            src="/logo-escudo.jpeg"
-            alt="CPP"
-            width={90}
-            height={108}
-            style={{ mixBlendMode: 'screen', objectFit: 'contain' }}
-          />
-          <div>
-            <p className="font-display text-white text-xl font-semibold leading-snug tracking-wide">
-              Colégio Presbiteriano<br />da Penha
-            </p>
-            <div
-              className="my-4 w-12"
-              style={{ height: '1px', background: 'var(--gold-500)', opacity: 0.7 }}
+          {/* Logo completo em card branco */}
+          <div
+            className="rounded-xl overflow-hidden"
+            style={{
+              background: '#fff',
+              padding: '20px 24px',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.30)',
+            }}
+          >
+            <Image
+              src="/logo-completo.jpeg"
+              alt="Colégio Presbiteriano da Penha"
+              width={260}
+              height={136}
+              style={{ objectFit: 'contain', display: 'block' }}
+              priority
             />
-            <p
-              className="font-display text-xs tracking-widest uppercase"
-              style={{ color: 'var(--gold-500)' }}
-            >
-              Educação Clássica Cristã
-            </p>
           </div>
         </div>
         <p
@@ -151,13 +147,15 @@ export default function LoginPage() {
       <div className="flex-1 flex items-center justify-center px-6">
         <div className="w-full max-w-sm">
           <div className="flex lg:hidden items-center gap-3 mb-8">
-            <Image
-              src="/logo-escudo.jpeg"
-              alt="CPP"
-              width={36}
-              height={44}
-              style={{ objectFit: 'contain' }}
-            />
+            <div className="rounded-lg overflow-hidden" style={{ border: '1px solid var(--border-soft)' }}>
+              <Image
+                src="/logo-escudo.jpeg"
+                alt="CPP"
+                width={40}
+                height={40}
+                style={{ objectFit: 'contain', display: 'block' }}
+              />
+            </div>
             <div>
               <p className="font-display text-sm font-semibold" style={{ color: 'var(--navy-900)' }}>
                 Colégio Presbiteriano da Penha
