@@ -46,13 +46,13 @@ function LoginForm() {
       return
     }
 
-    const { data: perfil, error: perfilError } = await supabase
+    const { data: perfil } = await supabase
       .from('perfis')
-      .select('role')
+      .select('papel')
       .eq('id', data.session.user.id)
       .single()
 
-    const papel = (perfil as any)?.role as Papel | undefined
+    const papel = (perfil as any)?.papel as Papel | undefined
 
     if (!papel) {
       await supabase.auth.signOut()

@@ -22,11 +22,11 @@ export async function GET(request: NextRequest) {
     if (data.session) {
       const { data: perfil } = await supabase
         .from('perfis')
-        .select('role')
+        .select('papel')
         .eq('id', data.session.user.id)
         .single()
 
-      const papel = (perfil as any)?.role as Papel | undefined
+      const papel = (perfil as any)?.papel as Papel | undefined
       const destino = papel ? PAPEL_HOME[papel] : next
       return NextResponse.redirect(new URL(destino, request.url))
     }

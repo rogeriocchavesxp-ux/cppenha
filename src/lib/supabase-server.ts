@@ -42,6 +42,5 @@ export async function getPerfil() {
     .single()
 
   if (!data) return null
-  // banco usa 'role', código usa 'papel' — normaliza aqui para não mudar todos os arquivos
-  return { ...data, papel: (data as any).role ?? (data as any).papel }
+  return data
 }

@@ -24,7 +24,7 @@ export default async function AdminPage() {
   ] = await Promise.all([
     sb.from('alunos').select('id', { count: 'exact', head: true }).eq('ativo', true),
     sb.from('turmas').select('id', { count: 'exact', head: true }),
-    sb.from('perfis').select('id', { count: 'exact', head: true }).neq('role', 'pai'),
+    sb.from('perfis').select('id', { count: 'exact', head: true }).neq('papel', 'pai'),
     resumoFinanceiro().catch(() => ({ totalPago: 0, qtdPendente: 0, qtdAtrasado: 0, valorPendente: 0, total: 0 })),
   ])
 
