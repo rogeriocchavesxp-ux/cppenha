@@ -15,8 +15,13 @@ export const Input = forwardRef<HTMLInputElement, Props>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-xs font-semibold"
-            style={{ color: 'var(--text-primary)' }}
+            className="font-semibold uppercase"
+            style={{
+              color: 'var(--text-primary)',
+              fontFamily: 'var(--font-display)',
+              fontSize: '10px',
+              letterSpacing: '0.1em',
+            }}
           >
             {label}
           </label>
@@ -27,16 +32,16 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           className={`w-full rounded-md px-3 py-2 text-sm outline-none transition-shadow ${className}`}
           style={{
             background: 'var(--surface)',
-            border: `1px solid ${error ? 'var(--red-600)' : 'var(--border)'}`,
+            border: `1px solid ${error ? 'var(--red-600)' : 'var(--navy-200)'}`,
             color: 'var(--text-primary)',
           }}
           onFocus={e => {
-            e.target.style.boxShadow = `0 0 0 2px var(--navy-200)`
+            e.target.style.boxShadow = `0 0 0 2px var(--navy-100)`
             e.target.style.borderColor = 'var(--navy-500)'
           }}
           onBlur={e => {
             e.target.style.boxShadow = 'none'
-            e.target.style.borderColor = error ? 'var(--red-600)' : 'var(--border)'
+            e.target.style.borderColor = error ? 'var(--red-600)' : 'var(--navy-200)'
           }}
           {...props}
         />

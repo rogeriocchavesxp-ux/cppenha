@@ -97,7 +97,7 @@ function LoginForm() {
         </p>
       )}
 
-      <Button type="submit" size="lg" loading={loading} className="w-full mt-2">
+      <Button type="submit" size="lg" loading={loading} className="w-full mt-2" style={{ letterSpacing: '0.07em' }}>
         Entrar
       </Button>
     </form>
@@ -110,24 +110,27 @@ export default function LoginPage() {
       {/* Painel esquerdo — identidade CPP */}
       <div
         className="hidden lg:flex flex-col justify-between w-96 shrink-0 p-12"
-        style={{ background: 'var(--navy-900)' }}
+        style={{
+          background: 'var(--navy-900)',
+          borderRight: '1px solid rgba(201,168,74,0.28)',
+        }}
       >
-        <div className="flex flex-col items-start gap-8">
-          {/* Logo completo em card institucional */}
+        <div className="flex flex-col items-start gap-10">
+          {/* Logo completo em cartão institucional */}
           <div
             className="rounded-xl overflow-hidden"
             style={{
               background: '#fff',
-              padding: '28px 32px',
-              boxShadow: '0 16px 56px rgba(0,0,0,0.40), 0 4px 12px rgba(0,0,0,0.20)',
+              padding: '24px 28px',
+              boxShadow: '0 24px 64px rgba(0,0,0,0.45), 0 6px 18px rgba(0,0,0,0.22), 0 1px 4px rgba(0,0,0,0.12)',
               borderBottom: '3px solid var(--gold-500)',
             }}
           >
             <Image
               src="/logo-completo.jpeg"
               alt="Colégio Presbiteriano da Penha"
-              width={260}
-              height={136}
+              width={252}
+              height={132}
               style={{ objectFit: 'contain', display: 'block' }}
               priority
             />
@@ -136,22 +139,22 @@ export default function LoginPage() {
           {/* Separador dourado */}
           <div
             style={{
-              width: '36px',
-              height: '1px',
-              background: 'var(--gold-500)',
-              opacity: 0.55,
+              width: '48px',
+              height: '2px',
+              background: 'linear-gradient(90deg, var(--gold-500), transparent)',
             }}
           />
         </div>
 
         {/* Versículo bíblico */}
         <p
-          className="italic leading-relaxed"
+          className="italic"
           style={{
-            color: 'rgba(255,255,255,0.68)',
+            color: 'rgba(255,255,255,0.65)',
             fontFamily: 'var(--font-sans)',
-            fontSize: '14px',
-            lineHeight: '1.85',
+            fontSize: '15px',
+            lineHeight: '1.95',
+            letterSpacing: '-0.01em',
           }}
         >
           "O temor do Senhor é o princípio da sabedoria."
@@ -160,8 +163,8 @@ export default function LoginPage() {
             className="not-italic"
             style={{
               color: 'var(--gold-300)',
-              fontSize: '12px',
-              letterSpacing: '0.06em',
+              fontSize: '11px',
+              letterSpacing: '0.1em',
               fontFamily: 'var(--font-display)',
             }}
           >

@@ -5,6 +5,14 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import type { Papel, NavItem } from '@/types'
 
+const PAPEL_LABEL: Record<Papel, string> = {
+  admin:       'Administrador',
+  secretaria:  'Secretaria',
+  coordenador: 'Coordenação',
+  professor:   'Professor',
+  pai:         'Responsável',
+}
+
 const NAV_ITEMS: NavItem[] = [
   // Admin / Secretaria
   { label: 'Dashboard',     href: '/admin',              roles: ['admin'] },
@@ -88,7 +96,7 @@ export function Sidebar({ papel, nomeUsuario }: Props) {
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 overflow-y-auto px-3 py-4 flex flex-col gap-0.5">
+      <nav className="flex-1 overflow-y-auto px-3 py-4 flex flex-col gap-1">
         {items.map(item => {
           const active = pathname === item.href || pathname.startsWith(item.href + '/')
           return (
@@ -130,7 +138,7 @@ export function Sidebar({ papel, nomeUsuario }: Props) {
             fontFamily: 'var(--font-display)',
           }}
         >
-          {papel}
+          {PAPEL_LABEL[papel]}
         </p>
       </div>
     </aside>
