@@ -10,6 +10,14 @@
   --navy-100: #D6E5F3;
   --navy-50:  #EBF2FA;
 
+  /* Ouro — extraído do logo */
+  --gold-700: #8B6914;
+  --gold-600: #A87E20;
+  --gold-500: #C9A84A;
+  --gold-300: #E2CC88;
+  --gold-100: #F7EFD0;
+  --gold-50:  #FBF7E8;
+
   /* Neutros quentes */
   --gray-900: #111827;
   --gray-700: #374151;
@@ -106,7 +114,8 @@ html {
 body {
   background: var(--background);
   color: var(--text-primary);
-  font-family: var(--font-sans, system-ui, sans-serif);
+  font-family: var(--font-sans, Georgia, 'Times New Roman', serif);
+  font-size: 15px;
   line-height: 1.6;
 }
 

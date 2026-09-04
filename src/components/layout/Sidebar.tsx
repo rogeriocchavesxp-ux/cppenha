@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import type { Papel, NavItem } from '@/types'
 
@@ -48,18 +49,23 @@ export function Sidebar({ papel, nomeUsuario }: Props) {
     >
       {/* Logo */}
       <div
-        className="flex items-center gap-3 px-5 py-5"
+        className="flex items-center gap-3 px-4 py-4"
         style={{ borderBottom: '1px solid var(--sidebar-border)' }}
       >
-        <span
-          className="font-display text-2xl font-semibold text-white leading-none"
-        >
-          CPP
-        </span>
+        <Image
+          src="/logo-escudo.jpeg"
+          alt="CPP"
+          width={40}
+          height={48}
+          className="shrink-0"
+          style={{ mixBlendMode: 'screen', objectFit: 'contain' }}
+        />
         <div>
-          <p className="text-white text-xs font-semibold leading-tight">Colégio Presbiteriano</p>
-          <p style={{ color: 'var(--sidebar-text)', fontSize: '10px', letterSpacing: '.06em' }}>
-            DA PENHA
+          <p className="font-display text-white text-xs font-semibold leading-tight tracking-wide">
+            Colégio Presbiteriano
+          </p>
+          <p style={{ color: 'var(--gold-500)', fontSize: '10px', letterSpacing: '.12em', textTransform: 'uppercase', fontFamily: 'var(--font-display)' }}>
+            da Penha
           </p>
         </div>
       </div>

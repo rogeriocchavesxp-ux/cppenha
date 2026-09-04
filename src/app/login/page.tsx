@@ -3,6 +3,7 @@
 import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createBrowserClient } from '@supabase/ssr'
+import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import type { Papel } from '@/types'
@@ -108,24 +109,41 @@ export default function LoginPage() {
     <div className="min-h-screen flex" style={{ background: 'var(--background)' }}>
       {/* Painel esquerdo — identidade CPP */}
       <div
-        className="hidden lg:flex flex-col justify-between w-80 shrink-0 p-10"
+        className="hidden lg:flex flex-col justify-between w-96 shrink-0 p-12"
         style={{ background: 'var(--navy-900)' }}
       >
-        <div>
-          <p className="font-display text-5xl font-semibold text-white leading-none tracking-tight">
-            CPP
-          </p>
-          <div className="w-8 my-4" style={{ height: '1px', background: 'rgba(255,255,255,0.25)' }} />
-          <p className="text-white text-sm font-medium leading-snug">
-            Colégio Presbiteriano<br />da Penha
-          </p>
-          <p className="text-xs mt-1 tracking-widest uppercase" style={{ color: 'rgba(255,255,255,0.45)' }}>
-            Educação Clássica Cristã
-          </p>
+        <div className="flex flex-col items-start gap-8">
+          <Image
+            src="/logo-escudo.jpeg"
+            alt="CPP"
+            width={90}
+            height={108}
+            style={{ mixBlendMode: 'screen', objectFit: 'contain' }}
+          />
+          <div>
+            <p className="font-display text-white text-xl font-semibold leading-snug tracking-wide">
+              Colégio Presbiteriano<br />da Penha
+            </p>
+            <div
+              className="my-4 w-12"
+              style={{ height: '1px', background: 'var(--gold-500)', opacity: 0.7 }}
+            />
+            <p
+              className="font-display text-xs tracking-widest uppercase"
+              style={{ color: 'var(--gold-500)' }}
+            >
+              Educação Clássica Cristã
+            </p>
+          </div>
         </div>
-        <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.35)' }}>
+        <p
+          className="text-sm leading-relaxed italic"
+          style={{ color: 'rgba(255,255,255,0.40)', fontFamily: 'var(--font-sans)' }}
+        >
           "O temor do Senhor é o princípio da sabedoria."<br />
-          Provérbios 9.10
+          <span className="not-italic text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
+            Provérbios 9.10
+          </span>
         </p>
       </div>
 
@@ -133,11 +151,15 @@ export default function LoginPage() {
       <div className="flex-1 flex items-center justify-center px-6">
         <div className="w-full max-w-sm">
           <div className="flex lg:hidden items-center gap-3 mb-8">
-            <span className="font-display text-3xl font-semibold" style={{ color: 'var(--navy-900)' }}>
-              CPP
-            </span>
+            <Image
+              src="/logo-escudo.jpeg"
+              alt="CPP"
+              width={36}
+              height={44}
+              style={{ objectFit: 'contain' }}
+            />
             <div>
-              <p className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+              <p className="font-display text-sm font-semibold" style={{ color: 'var(--navy-900)' }}>
                 Colégio Presbiteriano da Penha
               </p>
               <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Sistema de Gestão</p>
