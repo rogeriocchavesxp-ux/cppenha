@@ -56,8 +56,7 @@ function LoginForm() {
 
     if (!papel) {
       await supabase.auth.signOut()
-      const detalhe = perfilError ? ` [${perfilError.code}: ${perfilError.message}]` : ' [sem dados]'
-      setErroForm('Sem perfil de acesso.' + detalhe)
+      setErroForm('Usuário sem perfil de acesso. Contacte a secretaria.')
       setLoading(false)
       return
     }
