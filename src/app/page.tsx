@@ -56,16 +56,8 @@ export default async function HomePage({ searchParams }: PageProps) {
       <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
 
       {/* Header */}
-      <header style={{ padding: '32px 24px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: '900px', margin: '0 auto' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '14px' }}>
-          <div style={{ width: '44px', height: '44px', borderRadius: '8px', background: 'rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Cinzel',Georgia,serif", fontWeight: 700, fontSize: '14px' }}>
-            CPP
-          </div>
-          <div style={{ textAlign: 'left' }}>
-            <p style={{ margin: 0, fontFamily: "'Cinzel',Georgia,serif", fontSize: '15px', fontWeight: 600, lineHeight: 1.2 }}>Colégio Presbiteriano da Penha</p>
-            <p style={{ margin: 0, fontSize: '11px', color: 'rgba(255,255,255,0.5)', letterSpacing: '.1em', textTransform: 'uppercase' }}>Educação Clássica Cristã</p>
-          </div>
-        </div>
+      <header style={{ padding: '28px 24px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: '900px', margin: '0 auto' }}>
+        <img src="/logo-cpp.png" alt="Colégio Presbiteriano da Penha" style={{ height: '72px', width: 'auto', borderRadius: '6px' }} />
         <Link href="/login" style={{ padding: '8px 20px', borderRadius: '6px', background: 'rgba(255,255,255,0.1)', color: '#fff', fontSize: '13px', fontWeight: 600, textDecoration: 'none', border: '1px solid rgba(255,255,255,0.15)' }}>
           Entrar
         </Link>

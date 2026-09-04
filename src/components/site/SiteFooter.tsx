@@ -6,10 +6,8 @@ export function SiteFooter() {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 24px 32px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: '40px', marginBottom: '40px' }}>
           <div>
-            <p style={{ margin: '0 0 8px', fontFamily: "'Cinzel',Georgia,serif", fontSize: '15px', fontWeight: 700, color: '#fff' }}>
-              Colégio Presbiteriano da Penha
-            </p>
-            <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: '1.7' }}>
+            <img src="/logo-cpp.png" alt="Colégio Presbiteriano da Penha" style={{ height: '64px', width: 'auto', borderRadius: '4px', marginBottom: '16px', display: 'block' }} />
+            <p style={{ margin: '0 0 8px', fontSize: '13px', lineHeight: '1.7' }}>
               Educação com excelência, fé e caráter.
             </p>
             <p style={{ margin: 0, fontSize: '12px', fontStyle: 'italic', color: 'rgba(255,255,255,0.35)' }}>
