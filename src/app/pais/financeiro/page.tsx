@@ -5,6 +5,7 @@ import { AppShell } from '@/components/layout/AppShell'
 import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { listarMeusFilhos, mensalidadesDoAluno } from '@/actions/responsaveis'
+import { PagarBtn } from '@/components/financeiro/PagarBtn'
 
 type Props = { searchParams: Promise<{ aluno?: string }> }
 
@@ -127,6 +128,11 @@ export default async function FinanceiroPage({ searchParams }: Props) {
                       <Badge variant={STATUS_BADGE[m.status] ?? 'default'}>
                         {STATUS_LABEL[m.status] ?? m.status}
                       </Badge>
+                    </td>
+                    <td className="px-5 py-3">
+                      {['pendente', 'atrasado'].includes(m.status) && (
+                        <PagarBtn mensalidadeId={m.id} />
+                      )}
                     </td>
                   </tr>
                 ))}
