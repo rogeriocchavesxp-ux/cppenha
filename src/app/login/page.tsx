@@ -190,14 +190,13 @@ export default function LoginPage() {
       <div className="flex-1 flex items-center justify-center px-6">
         <div className="w-full max-w-sm">
           <div className="flex lg:hidden items-center gap-3 mb-8">
-            <div className="rounded-lg overflow-hidden" style={{ border: '1px solid var(--border-soft)' }}>
-              <Image
-                src="/logo-escudo.jpeg"
-                alt="CPP"
-                width={40}
-                height={40}
-                style={{ objectFit: 'contain', display: 'block' }}
-              />
+            <div
+              className="rounded-lg flex items-center justify-center"
+              style={{ width: 40, height: 40, background: 'var(--navy-900)', flexShrink: 0 }}
+            >
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '10px', fontWeight: 700, color: 'var(--gold-500)', letterSpacing: '0.05em' }}>
+                CPP
+              </span>
             </div>
             <div>
               <p className="font-display text-sm font-semibold" style={{ color: 'var(--navy-900)' }}>
