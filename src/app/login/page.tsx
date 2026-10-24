@@ -3,7 +3,6 @@
 import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createBrowserClient } from '@supabase/ssr'
-import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import type { Papel } from '@/types'
@@ -116,24 +115,38 @@ export default function LoginPage() {
         }}
       >
         <div className="flex flex-col items-start gap-10">
-          {/* Logo completo em cartão institucional */}
+          {/* Nome institucional */}
           <div
-            className="rounded-xl overflow-hidden"
             style={{
-              background: '#fff',
-              padding: '24px 28px',
-              boxShadow: '0 24px 64px rgba(0,0,0,0.45), 0 6px 18px rgba(0,0,0,0.22), 0 1px 4px rgba(0,0,0,0.12)',
               borderBottom: '3px solid var(--gold-500)',
+              paddingBottom: '20px',
             }}
           >
-            <Image
-              src="/logo-completo.jpeg"
-              alt="Colégio Presbiteriano da Penha"
-              width={252}
-              height={132}
-              style={{ objectFit: 'contain', display: 'block' }}
-              priority
-            />
+            <p
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '11px',
+                fontWeight: 600,
+                letterSpacing: '0.28em',
+                textTransform: 'uppercase',
+                color: 'var(--gold-500)',
+                marginBottom: '10px',
+              }}
+            >
+              Educação Clássica Cristã
+            </p>
+            <p
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '26px',
+                fontWeight: 700,
+                letterSpacing: '0.03em',
+                lineHeight: 1.15,
+                color: '#fff',
+              }}
+            >
+              Colégio Presbiteriano<br />da Penha
+            </p>
           </div>
 
           {/* Separador dourado */}

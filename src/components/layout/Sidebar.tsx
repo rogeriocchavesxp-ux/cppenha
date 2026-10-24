@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import type { Papel, NavItem } from '@/types'
 
@@ -61,16 +60,20 @@ export function Sidebar({ papel, nomeUsuario }: Props) {
         style={{ borderBottom: '1px solid var(--sidebar-border)' }}
       >
         <div
-          className="shrink-0 flex items-center justify-center rounded-xl overflow-hidden"
-          style={{ background: '#fff', width: 46, height: 46, padding: 5, boxShadow: '0 2px 8px rgba(0,0,0,0.25)' }}
+          className="shrink-0 flex items-center justify-center rounded-xl"
+          style={{ background: 'var(--gold-500)', width: 46, height: 46, flexShrink: 0 }}
         >
-          <Image
-            src="/logo-escudo.jpeg"
-            alt="CPP"
-            width={36}
-            height={36}
-            style={{ objectFit: 'contain', display: 'block' }}
-          />
+          <span
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '13px',
+              fontWeight: 700,
+              color: 'var(--sidebar-bg)',
+              letterSpacing: '0.05em',
+            }}
+          >
+            CPP
+          </span>
         </div>
         <div>
           <p
